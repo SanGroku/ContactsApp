@@ -17,9 +17,10 @@ namespace ContactsApp.ViewModels
                                             () => !IsBusy);
         }
 
-        string name = "James Montemagno";
-        string website = "http://motz.codes";
-        bool bestFriend;
+        string name;
+        string website;
+        bool addFavorite;
+        bool addBookmark;
         bool isBusy = false;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -30,15 +31,27 @@ namespace ContactsApp.ViewModels
         }
 
 
-        public bool BestFriend
+        public bool AddFavorite
         {
-            get { return bestFriend; }
+            get { return addFavorite; }
             set
             {
-                bestFriend = value;
+                addFavorite = value;
                 OnPropertyChanged();
 
                 OnPropertyChanged(nameof(DisplayMessage));
+            }
+        }
+
+        public bool AddBookmark
+        {
+            get { return addBookmark; }
+            set
+            {
+                addBookmark = value;
+                OnPropertyChanged();
+
+                OnPropertyChanged(nameof(BookmarkMessage));
             }
         }
 
@@ -50,14 +63,14 @@ namespace ContactsApp.ViewModels
             {
                 name = value;
 
-                if (name == "Miguel")
+                if (name == "Bob")
                     IsBusy = true;
                 else
                     IsBusy = false;
 
                 OnPropertyChanged();
 
-                OnPropertyChanged(nameof(DisplayMessage));
+                OnPropertyChanged(nameof(BookmarkMessage));
             }
         }
 
@@ -65,10 +78,21 @@ namespace ContactsApp.ViewModels
         {
             get
             {
-                return $"Your new friend is named {Name} and " +
-                       $"{(bestFriend ? "is" : "is not")} your best friend.";
+                return $"{Name} " +
+                       $"{(addFavorite ? "is" : "is not")} on your favorites list.";
             }
         }
+
+        public string BookmarkMessage
+        {
+            get
+            {
+                return $"{website} " +
+                       $"{(addBookmark ? "is" : "is not")} on your bookmarks list";
+                    
+            }
+        }
+
 
         public string Website
         {

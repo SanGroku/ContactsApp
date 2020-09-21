@@ -7,18 +7,48 @@
         <Label Text="Name"/>
         <Entry Text="{Binding Name}" Placeholder="Full Name"/>
 
-        <Label Text="Website"/>
-        <Entry Text="{Binding Website}" Placeholder="Your Website"/>
-
         <StackLayout Orientation="Horizontal" Spacing="10">
-            <Label Text="Best Friend?"/>
-            <Switch IsToggled="{Binding BestFriend}"/>
+            <Label Text="Add to favorites list?"/>
+            <Switch IsToggled="{Binding AddFavorite}"/>
         </StackLayout>
 
         <Label Text="{Binding DisplayMessage}"/>
-
-        <Button Text="Open Website" Command="{Binding LaunchWebsiteCommand}"/>
+        
         <Button Text="Save Contact" Command="{Binding SaveContactCommand}"/>
+  
+        <Label Text="Website"/>
+        <Entry Text="{Binding Website}" Placeholder="Your Website"/>
+        
+        <Button Text="Open Website" Command="{Binding LaunchWebsiteCommand}"/>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Label Text="Add website to bookmarks list?"/>
+            <Switch IsToggled="{Binding AddBookmark}"/>
+        </StackLayout>
+
+        <Label Text="{Binding BookmarkMessage}"/>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Label Text="Color Changing Button!"/>
+            <Switch IsToggled="True">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="On">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor"
+                            Value="MediumSpringGreen" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Off">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor"
+                            Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Switch>
+        </StackLayout>
 
         <ActivityIndicator IsRunning="{Binding IsBusy}"/>
 
